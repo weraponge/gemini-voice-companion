@@ -51,7 +51,7 @@ const App: React.FC = () => {
   const startSession = async () => {
     try {
       setStatus(SessionStatus.CONNECTING);
-      const apiKey = userApiKey || process.env.API_KEY;
+      const apiKey = userApiKey || (import.meta.env.VITE_API_KEY as string);
       if (!apiKey) {
         setStatus(SessionStatus.ERROR);
         setIsSettingsModalOpen(true);
@@ -83,7 +83,7 @@ const App: React.FC = () => {
             scriptProcessor.connect(audioContextIn.destination);
           },
           onmessage: async (message: LiveServerMessage) => {
-            const base64Audio = message.serverContent?.modelTurn?.parts[0]?.inlineData?.data;
+            const base64Audio = message.serverContent?.modelTurn?.parts?.[0]?.inlineData?.data;
             if (base64Audio) {
               const outCtx = audioContextOutRef.current;
               if (outCtx) {
@@ -184,7 +184,7 @@ const App: React.FC = () => {
   const startSession = async () => {
     try {
       setStatus(SessionStatus.CONNECTING);
-      const apiKey = userApiKey || (process.env as any).API_KEY;
+      const apiKey = userApiKey || (import.meta.env.VITE_API_KEY as string);
       if (!apiKey) {
         setStatus(SessionStatus.ERROR);
         setIsSettingsModalOpen(true);
@@ -216,7 +216,7 @@ const App: React.FC = () => {
             scriptProcessor.connect(audioContextIn.destination);
           },
           onmessage: async (message: LiveServerMessage) => {
-            const base64Audio = message.serverContent?.modelTurn?.parts[0]?.inlineData?.data;
+            const base64Audio = message.serverContent?.modelTurn?.parts?.[0]?.inlineData?.data;
             if (base64Audio) {
               const outCtx = audioContextOutRef.current;
               if (outCtx) {
