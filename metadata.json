@@ -1,0 +1,7 @@
+{
+  "name": "Gemini Voice Companion",
+  "description": "A real-time AI voice assistant powered by Gemini 2.5 Native Audio, featuring low-latency conversation and visual audio feedback.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
